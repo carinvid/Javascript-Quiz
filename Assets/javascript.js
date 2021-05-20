@@ -1,3 +1,11 @@
+const startButton = document.getElementById("start-btn");
+
+const quizContainerElement = document.getElementById("quiz-container");
+
+startButton.addEventListener("click", startQuiz);
+
+const shuffleQuestions, currentQuestionIndex
+
 const questions = [
   {
     question: "What is Hoisting in javascript?",
@@ -52,6 +60,16 @@ const questions = [
 ];
 
 const score = 0;
- for ( var i = 0; i < questions.length; i ++){
-     var response = 
- }
+
+function startTime() {}
+
+function startQuiz() {
+  console.log("started")
+  startButton.classList.add('hide')
+  quizContainerElement.classList.remove('hide')
+  setNextQuestion()
+
+
+}
+
+function setScore() {}

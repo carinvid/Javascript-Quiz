@@ -6,9 +6,10 @@
 }
 
 :root {
-  --clr-light: turquoise;
-  --clr-dark: purple;
+  --clr-light: rgb(132, 187, 181);
+  --clr-dark: rgb(25, 146, 106);
   --clr-tune: white;
+  --clr-contrast: rgb(143, 206, 114);
 }
 
 body {
@@ -25,7 +26,7 @@ body {
 
 .main-.container {
   justify-content: center;
-  display: inline;
+  display: center;
 }
 
 .container {
@@ -45,15 +46,31 @@ body {
 
 .start-btn {
   border: solid;
-  background-color: brown;
+  background-color: var(--clr-dark);
   border-radius: 5px;
   padding: 10px 15px;
+  font-size: 2rem;
+}
+
+.start-btn:hover {
+  transform: scale(1.5%);
+  color: var(--clr-light);
 }
 
 .btn {
   border: 1px solid;
-  background-color: var(--clr-dark);
+  background-color: var(--clr-contrast);
   border-radius: 5px;
   padding: 5px 10px;
   outline: none;
+  font-size: 1.5rem;
+}
+
+.btn:hover {
+  transform: scale(2%);
+  color: var(--clr-light);
+}
+
+.hide {
+  display: none;
 }
