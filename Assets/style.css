@@ -70,7 +70,3 @@ body {
   transform: scale(2%);
   color: var(--clr-light);
 }
-
-.hide {
-  display: none;
-}
