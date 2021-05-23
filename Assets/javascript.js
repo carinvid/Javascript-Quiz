@@ -1,3 +1,24 @@
+/*for the timer*/
+document.addEventListener('DOMContentLoaded', () => {
+  const timeLfetDisplay = document.querySelector('#time-left')
+  const startBtn = document.querySelector('start-btn')
+  let timeLeft = 10
+
+  function countDown() {
+    setInterval(function(){
+      if(timeLeft <= 0 ) {
+        clearInterval(timeLeft = 0)
+      }
+      timeLeftDisplay.innerHTML = timeLeft
+      timeLeft -=1
+          }, 1000)
+  }
+startButon.addEventListener('click', countDown);
+
+})
+
+
+
 const startButton = document.getElementById("start-btn");
 const quizContainerElement = document.getElementById("quiz-container")
 const questionElement = document.getElementById('question')

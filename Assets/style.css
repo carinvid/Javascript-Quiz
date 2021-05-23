@@ -2,7 +2,7 @@
 *::before,
 ::after {
   box-sizing: border-box;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: "Noto Sans JP", sans-serif;
 }
 
 :root {
@@ -10,6 +10,13 @@
   --clr-dark: rgb(25, 146, 106);
   --clr-tune: white;
   --clr-contrast: rgb(143, 206, 114);
+}
+
+p {
+  display: inline-flex;
+  text-align: right;
+  justify-content: right;
+  margin: 0;
 }
 
 body {
@@ -24,9 +31,27 @@ body {
   background-color: var(--clr-light);
 }
 
+.start-btn button {
+  position: absolute;
+  top: 120%;
+  left: 82%;
+  background-color: var(--clr-dark);
+  font-size: 25px;
+  font-weight: 500;
+  padding: 15px 30px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 .main-container {
-  justify-content: center;
-  display: center;
+  position: absolute;
+  top: 30%;
+  left: 20%;
+  width: 1020px;
+  background-color: var(--clr-tune);
+  text-align: center;
 }
 
 .container {
