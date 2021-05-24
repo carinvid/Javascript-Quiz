@@ -1,6 +1,6 @@
 /*for the timer*/
 document.addEventListener("DOMContentLoaded", () => {
-  const timeLfetDisplay = document.querySelector("#time-left");
+  const timeLeftDisplay = document.querySelector("#time-left");
   const startBtn = document.querySelector("start-btn");
   let timeLeft = 10;
 
@@ -23,7 +23,7 @@ var questionContainerElement = document.getElementById("question-container");
 var questionElement = document.getElementById("question");
 var answerButtonsElement = document.getElementById("answer-buttons");
 
-//Variable to randomize the questions
+// to randomize the questions
 var shuffledQuestions, currentQuestionIndex;
 
 //Start and Next click events
@@ -32,6 +32,7 @@ nextButton.addEventListener("click", () => {
   currentQuestionIndex++;
   setNextQuestion();
 });
+
 //Function to start game
 function startGame() {
   console.log("started");
