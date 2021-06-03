@@ -2,16 +2,18 @@
 var startButton = document.getElementById("start-btn");
 
 var questionContainerElement = document.getElementById("question-container");
-var finalscore = document.getElementById("final-score");
+
 var endscreen = document.getElementById("end-screen");
 var questionElement = document.getElementById("question-title");
 var answerButtonsElement = document.getElementById("choices");
+var finalscore = document.getElementById("#final-score");
 
 // to randomize the questions and stop quiz
 var shuffledQuestions;
 var currentQuestionIndex = 0;
 var stoptimer;
 
+var initialsEl = document.getElementById("initials");
 //question variables
 var questions = [
   {
@@ -131,16 +133,42 @@ function selectAnswer(e) {
   setNextQuestion();
 }
 
-function setStatusClass(element, correct) {
-  clearStatusClass(element);
-  if (correct) {
-    element.classList.add("correct");
-  } else {
-    element.classList.add("wrong");
-  }
-}
+/*for the highscores*/
+var submitButton = document.getElementById("#submit");
 
-function clearStatusClass(element) {
-  element.classList.remove("correct");
-  element.classList.remove("wrong");
-}
+var resultFinalScore = function (event) {
+  event.preventDefault();
+  var initialInput = document.querySelector("text[name = 'intials']").value;
+  var finalscore = document.getElementById("#final-score").value;
+
+  var scoreDataObj = {
+    input: initialInput,
+    score: finalscore,
+  };
+  // check if input values are empty strings
+  if (!initialInput) {
+    alert("You need to fill out the task form!");
+    return false;
+  }
+  submitButton.reset();
+  createFinalScoreEl(scoreDataObj);
+};
+
+var createScoreListEl = function (scoreDataObj) {
+  var listScoreEl = document.createElement("li");
+  listScoreEl.className = "list-scores";
+
+  var scoreListEl = document.createElement("#highscores");
+  scoreListEl.className = "score-info";
+  scoreListEl.innerHTML =
+    "<h3 class='initials'>" +
+    scoreDataObj.name +
+    "</h3><span class='final-score'>" +
+    scoreDataObj.type +
+    "</span>";
+
+  listScoreEl.appendChild(scoreListEl);
+  finalscore.appendChild(listScoreEl);
+};
+
+submitButton.addEventListener("#submit", resultFinalScore);
