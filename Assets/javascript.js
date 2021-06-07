@@ -6,13 +6,13 @@ var questionContainerElement = document.getElementById("question-container");
 var endscreen = document.getElementById("end-screen");
 var questionElement = document.getElementById("question-title");
 var answerButtonsElement = document.getElementById("choices");
-var finalscore = document.getElementById("#final-score");
+var finalscore = document.getElementById("final-score");
 
 // to randomize the questions and stop quiz
 var shuffledQuestions;
 var currentQuestionIndex = 0;
 var stoptimer;
-
+var highScoreArray = JSON.parse(localStorage.getItem("highScore")) || [];
 var initialsEl = document.getElementById("initials");
 //question variables
 var questions = [
@@ -117,7 +117,7 @@ function showQuestion(question) {
     button.innerText = answer.text;
     button.classList.add("btn");
 
-    // if statment4 to check to see if the answer selected is the correct data attribute
+    // if statment to check to see if the answer selected is the correct data attribute
     if (answer.correct) {
       button.dataset.correct = answer.correct;
     }
@@ -134,41 +134,53 @@ function selectAnswer(e) {
 }
 
 /*for the highscores*/
-var submitButton = document.getElementById("#submit");
+var submitButton = document.getElementById("submit");
 
 var resultFinalScore = function (event) {
   event.preventDefault();
-  var initialInput = document.querySelector("text[name = 'intials']").value;
-  var finalscore = document.getElementById("#final-score").value;
+  var initialInput = document.querySelector("#initials").value;
 
   var scoreDataObj = {
-    input: initialInput,
-    score: finalscore,
+    initial: initialInput,
+    score: timeLeft,
   };
   // check if input values are empty strings
   if (!initialInput) {
     alert("You need to fill out the task form!");
     return false;
   }
-  submitButton.reset();
-  createFinalScoreEl(scoreDataObj);
+
+  highScoreArray.push(scoreDataObj);
+  localStorage.setItem("highScore", JSON.stringify(highScoreArray));
+  createScoreListEl(scoreDataObj);
 };
 
 var createScoreListEl = function (scoreDataObj) {
-  var listScoreEl = document.createElement("li");
+  var listScoreEl = document.querySelector("#highScorelist");
   listScoreEl.className = "list-scores";
 
-  var scoreListEl = document.createElement("#highscores");
-  scoreListEl.className = "score-info";
-  scoreListEl.innerHTML =
-    "<h3 class='initials'>" +
-    scoreDataObj.name +
-    "</h3><span class='final-score'>" +
-    scoreDataObj.type +
-    "</span>";
+  for (let index = 0; index < highScoreArray.length; index++) {
+    var scoreListEl = document.createElement("li");
+    scoreListEl.className = "score-info";
+    scoreListEl.innerHTML =
+      "<h3 class='initials'>" +
+      highScoreArray[index].initial +
+      "<span class='final-score'> - " +
+      highScoreArray[index].score +
+      "</span> </h3>";
 
-  listScoreEl.appendChild(scoreListEl);
-  finalscore.appendChild(listScoreEl);
+    listScoreEl.appendChild(scoreListEl);
+  }
+
+  endscreen.classList.add("hide");
+  document.querySelector("#highScore-container").classList.remove("hide");
 };
 
-submitButton.addEventListener("#submit", resultFinalScore);
+submitButton.addEventListener("click", resultFinalScore);
+
+document.querySelector("#gobackbtn").addEventListener("click", function () {
+  location.reload();
+});
+document.querySelector("#clearbtn").addEventListener("click", function () {
+  localStorage.clear();
+});
